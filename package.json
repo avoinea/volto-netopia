@@ -1,0 +1,22 @@
+{
+  "name": "@plone-collective/volto-netopia",
+  "version": "0.1.0",
+  "description": "volto-netopia: Volto add-on support for collective.netopia",
+  "main": "src/index.js",
+  "license": "MIT",
+  "keywords": [
+    "volto-addon",
+    "volto",
+    "plone",
+    "react",
+    "netopia-payments",
+    "mobilpay",
+    "netopia"
+  ],
+  "scripts": {
+    "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon"
+  },
+  "devDependencies": {
+    "@plone/scripts": "*"
+  }
+}
