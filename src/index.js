@@ -1,4 +1,6 @@
 import netopiaMiddleware from './middleware/netopiaConfirm';
+import NetopiaPay from './components/NetopiaPay';
+import { netopiaSign } from './reducers';
 
 const applyConfig = (config) => {
   // netopia.confirm express-middleware
@@ -9,6 +11,23 @@ const applyConfig = (config) => {
       netopiaMiddleware(express),
     ];
   }
+
+  // Custom reducers
+  config.addonReducers = {
+    ...config.addonReducers,
+    netopiaSign,
+  };
+
+  // Custom routes
+  config.addonRoutes = [
+    {
+      path: '**/netopia.pay',
+      component: NetopiaPay,
+    },
+
+    ...(config.addonRoutes || []),
+  ];
+
 
   return config;
 };
