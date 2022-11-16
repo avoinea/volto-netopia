@@ -1,18 +1,12 @@
-import { getAPIResourceWithAuth } from '@plone/volto/helpers';
-
-const HEADERS = ['content-type', 'content-disposition', 'cache-control'];
+import { postBackendResourceWithAuth } from '@plone-collective/volto-netopia/helpers';
 
 function netopiaMiddleware(req, res, next) {
   const { errorHandler } = req.app.locals;
-  getAPIResourceWithAuth(req)
+  postBackendResourceWithAuth(req)
     .then((resource) => {
-      // Just forward the headers that we need
-      HEADERS.forEach((header) => {
-        if (resource.headers[header]) {
-          res.set(header, resource.headers[header]);
-        }
-      });
-
+      Object.keys(resource.headers).forEach((header) =>
+        res.set(header, resource.headers[header]),
+      );
       res.send(resource.body);
     }, errorHandler)
     .catch(errorHandler);
