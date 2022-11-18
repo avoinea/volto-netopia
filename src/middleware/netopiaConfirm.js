@@ -14,7 +14,7 @@ function netopiaMiddleware(req, res, next) {
 
 export default function (express) {
   const middleware = express.Router();
-
+  middleware.use(express.urlencoded({ extended: true }));
   middleware.all(['**/netopia.confirm$'], netopiaMiddleware);
   middleware.id = 'netopiaConfirmResourcesProcessor';
   return middleware;

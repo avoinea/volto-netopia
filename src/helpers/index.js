@@ -22,6 +22,7 @@ export const postBackendResourceWithAuth = (req) =>
     const backendURL = `${apiPath}${req.path}`;
     const request = superagent
       .post(backendURL)
+      .send(req.body)
       .maxResponseSize(settings.maxResponseSize)
       .responseType('blob');
     const authToken = req.universalCookies.get('auth_token');
