@@ -11,7 +11,7 @@ const NetopiaPay = (props) => {
 
   React.useEffect(() => {
     dispatch(getNetopiaSign(getParentUrl(location.pathname)));
-  }, [dispatch]);
+  }, [dispatch, location.pathname]);
 
   return (
     <Container>
